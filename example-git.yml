@@ -1,0 +1,19 @@
+---
+- name: Install Apache server on GCP VM
+  hosts: 34.219.10.92
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install apache2 package
+      apt:
+        name: apache2
+        state: present
+
+    - name: Ensure apache is running
+      service:
+        name: apache2
+        state: started
+        enabled: yes
